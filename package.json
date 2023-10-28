@@ -2,9 +2,11 @@
   "name": "SpectreMelody",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/view/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run development",
+    "development": "npx tailwindcss -i ./dist/input.css -o ./dist/output.css --watch"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,9 @@
   "dependencies": {
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
-    "postcss-cli": "^10.1.0",
+    "postcss-cli": "^10.1.0"
+  },
+  "devDependencies": {
     "tailwindcss": "^3.3.5"
   }
 }
