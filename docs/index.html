@@ -3,29 +3,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpectreMelody</title>
+    <style>
+        body {
+          margin: 0;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          background-color: #000;
+          color: #fff;
+          font-family: 'Orbitron', sans-serif; /* Mengganti dengan font futuristik, contohnya 'Orbitron' */
+        }
+    </style>
     <link href="./assets/css/output.css" rel="stylesheet">
-
-    <script src="./assets/js/canvas.js"> </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap">
 </head>
-<body class="bg-primary font-display">
-    <!-- <nav class="z-50 fixed w-full py-5 text-lg font-normal text-ivory">
-        <ul class="font-medium cursor-default select-none gap-5 flex items-center justify-center">
-            <li class="cursor-pointer">
-                About
-            </li>
-            <li class="cursor-pointer">
-                Skills
-            </li>
-            <li class="cursor-pointer">
-                Project
-            </li>
-            <li class="cursor-pointer">
-                Social Link
-            </li>
-        </ul>
-    </nav> -->
-    <div id="hero" class="-z-20 bg-[#000] fixed w-full">
-        <canvas id="canvas" class="w-full h-screen"></canvas>
-    </div>
+<body>
+    <canvas id="canvas"></canvas>
+    <script src="./assets/js/canvas.js"></script>
 </body>
 </html>

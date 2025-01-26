@@ -1,4 +1,11 @@
-var w, h, loopId, id, canvas, ctx, particles;
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const text = "SpectreMelody";
+const fontSize = 48;
+const flashlightSize = 170;
+
+var w, h, mouseX, mouseY, loopId, id, particles;
 
 var options = {
     particleColor: "rgba(227, 230, 224)",
@@ -16,16 +23,19 @@ var rgb = options.lineColor.match(/\d+/g);
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-    resizeReset();
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    w = canvas.width;
+    h = canvas.height;
+
+    mouseX = 0;
+    mouseY = 0;
+
     initialiseElements();
     startAnimation();
-}
 
-function resizeReset() {
-    w = canvas.width = window.innerHeight;
-    h = canvas.height = window.innerHeight;
+    canvas.addEventListener("mousemove", mousePosition);
 }
 
 function initialiseElements() {
@@ -49,6 +59,60 @@ function animationLoop() {
 function drawScene() {
     drawLine();
     drawParticle();
+    drawPlainText();
+    drawText();
+}
+
+function mousePosition(event) {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+}
+
+function drawPlainText()
+{
+    ctx.font = `${fontSize}px 'Orbitron', sans-serif`;
+    ctx.fillStyle = "white";
+    
+    const textWidth = ctx.measureText(text).width;
+    ctx.fillText(
+        text,
+        canvas.width / 2 - textWidth / 2,
+        canvas.height / 2 + fontSize / 2
+    );
+}
+
+function drawText() {
+    ctx.save();
+
+    ctx.beginPath();
+    ctx.arc(mouseX, mouseY, flashlightSize / 2, 0, 2 * Math.PI);
+    ctx.clip();
+
+    ctx.fillStyle = 'rgba(0,0,0,0)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    const textWidth = ctx.measureText(text).width;
+    const gradient = ctx.createLinearGradient(
+        canvas.width / 2 - textWidth / 2, 
+        canvas.height / 2, 
+        canvas.width / 2 + textWidth / 2, 
+        canvas.height / 2
+    );
+    
+    gradient.addColorStop(0, 'rgba(255, 69, 0, 1)');
+    gradient.addColorStop(0.5, 'rgba(255, 165, 0, 1)');
+    gradient.addColorStop(1, 'rgba(255, 255, 0, 1)');
+
+    ctx.font = `${fontSize}px 'Orbitron', sans-serif`;
+    ctx.fillStyle = gradient;
+
+    ctx.fillText(
+        text,
+        canvas.width / 2 - textWidth / 2,
+        canvas.height / 2 + fontSize / 2
+    );
+
+    ctx.restore();
 }
 
 function drawParticle() {
@@ -100,6 +164,15 @@ Particle = function() {
 
     _this.update = function() {
         _this.border();
+
+        var distanceToCursor = checkDistance(_this.x, _this.y, mouseX, mouseY);
+
+        if (distanceToCursor < 100) {
+            var angleToCursor = Math.atan2(mouseY - _this.y, mouseX - _this.x);
+            _this.vector.x = Math.cos(angleToCursor + Math.PI) * _this.speed;
+            _this.vector.y = Math.sin(angleToCursor + Math.PI) * _this.speed;
+        }
+
         _this.x += _this.vector.x;
         _this.y += _this.vector.y;
     }
