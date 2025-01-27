@@ -10,17 +10,39 @@
     <canvas id="canvas" class="w-screen h-screen absolute inset-0"></canvas>
     <main class="z-50 w-screen h-screen">
         <nav class="w-full relative bg-white/5 border-b border-white h-fit flex items-center justify-between">
+            <div class="absolute w-full -z-10 inset-0 flex">
+                <div class="h-12 w-1/2 bg-stripes-right"></div>
+                <div class="h-12 w-1/2 bg-stripes-left"></div>
+            </div>
             <div class="px-4 py-0.5">
                 <span id="fps" class="text-white text-sm"></span>
             </div>
-            <div class="bg-white/20 px-4 py-0.5 rounded-lg">
+            <div class="absolute -translate-x-1/2 left-1/2 bg-white/20 px-4 py-0.5 rounded-sm">
                 <span id="date" class="text-white text-sm"/>
             </div>
-            <div id="batteryGroup" class="py-0.5 px-4 text-white text-center relative w-fit flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M3.75 18h15A2.25 2.25 0 0 0 21 15.75v-6a2.25 2.25 0 0 0-2.25-2.25h-15A2.25 2.25 0 0 0 1.5 9.75v6A2.25 2.25 0 0 0 3.75 18Z" />
-                </svg>
-                <p class="select-none pt-1 text-xs absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"><b id="batteryLevel"></b></p>
+            <div class="flex items-center">
+                <div class="relative group">
+                    <a href="mailto:rudianahadi@gmail.com">
+                        <div class="relative text-white group cursor-pointer tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 group-hover:fill-white/50">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                            </svg>  
+                            <div class="absolute top-0.5 right-0 w-2 h-2 bg-red-500 rounded-full"></div>                 
+                        </div>
+                    </a>
+                    <div class="absolute -right-0 mt-4 hidden group-hover:block">
+                        <div class="relative">
+                            <div class="absolute w-2 h-2 rotate-45 -top-1 right-3 bg-white"></div>
+                            <span class="bg-white select-none px-2 py-1 rounded-sm whitespace-nowrap">Email Me!</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="batteryGroup" class="px-4 mb-1 text-white text-center relative w-fit flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M3.75 18h15A2.25 2.25 0 0 0 21 15.75v-6a2.25 2.25 0 0 0-2.25-2.25h-15A2.25 2.25 0 0 0 1.5 9.75v6A2.25 2.25 0 0 0 3.75 18Z" />
+                    </svg>
+                    <p class="select-none pt-0.5 text-xs absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"><b id="batteryLevel"></b></p>
+                </div>
             </div>
         </nav>
         <!-- <ul class="fixed w-fit grid grid-cols-2 gap-2">
